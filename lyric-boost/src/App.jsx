@@ -17,7 +17,7 @@ function App() {
       <p className="read-the-docs"> 
         Blast through writer's block.
       </p>
-    </>
+    </> 
   )
 }
 
