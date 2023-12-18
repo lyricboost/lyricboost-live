@@ -1,0 +1,33 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-lyricboost-dev-185348-authRole",
+      "UnauthRoleArn": "arn:aws:iam::758304301615:role/amplify-lyricboost-dev-185348-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::758304301615:role/amplify-lyricboost-dev-185348-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-lyricboost-dev-185348-deployment",
+      "UnauthRoleName": "amplify-lyricboost-dev-185348-unauthRole",
+      "StackName": "amplify-lyricboost-dev-185348",
+      "StackId": "arn:aws:cloudformation:us-east-1:758304301615:stack/amplify-lyricboost-dev-185348/e6faa330-9d3f-11ee-9621-0ac09ef620b5",
+      "AmplifyAppId": "d2gn001kmjhot4",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-lyricboost-dev-185348-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+    },
+    "categories": {
+      "auth": {
+        "lyricboostda706c03": {}
+      },
+      "function": {
+        "lyricboostda706c03CustomMessage": {
+          "REDIRECTURL": "",
+          "EMAILSUBJECT": "",
+          "EMAILMESSAGE": "",
+          "deploymentBucketName": "amplify-lyricboost-dev-185348-deployment",
+          "s3Key": "amplify-builds/lyricboostda706c03CustomMessage-3950356d676656373636-build.zip"
+        }
+      },
+      "api": {
+        "lyricboost": {}
+      }
+    }
+  }
+}
