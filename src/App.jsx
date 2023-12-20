@@ -9,13 +9,236 @@ import { Amplify } from 'aws-amplify';
  
 Amplify.configure(awsconfig); 
 
-import { Authenticator, Button, Heading } from '@aws-amplify/ui-react';
+import {
+  Authenticator,
+  ThemeProvider,
+  Button, 
+  Heading,
+  View,
+  Image,
+  Text
+} from '@aws-amplify/ui-react';
+
 import '@aws-amplify/ui-react/styles.css';
+
+const components = {
+  Header() {
+
+    return (
+      <View textAlign="center">
+        <Image
+          alt="Lyric Boost logo"
+          src={lyricBoostLogo}
+          width="70px" 
+        />
+      </View>
+    );
+  },
+
+  Footer() {
+
+    return (
+      <View textAlign="center">
+        <Text>
+          &copy; All Rights Reserved
+        </Text>
+      </View>
+    );
+  },
+
+  SignIn: {
+    Header() {
+
+      return (
+        <Heading
+          level={3}
+        >
+          Sign in to your account
+        </Heading>
+      );
+    },
+    Footer() {
+      const { toForgotPassword } = Authenticator();
+
+      return (
+        <View textAlign="center">
+          <Button
+            fontWeight="normal"
+            onClick={toForgotPassword}
+            size="small"
+            variation="link"
+          >
+            Reset Password
+          </Button>
+        </View>
+      );
+    },
+  },
+
+  SignUp: {
+    Header() {
+
+      return (
+        <Heading
+          level={3}
+        >
+          Create a new account
+        </Heading>
+      );
+    },
+    Footer() {
+      const { toSignIn } = Authenticator();
+
+      return (
+        <View textAlign="center">
+          <Button
+            fontWeight="normal"
+            onClick={toSignIn}
+            size="small"
+            variation="link"
+          >
+            Back to Sign In
+          </Button>
+        </View>
+      );
+    },
+  },
+  ConfirmSignUp: {
+    Header() {
+      return (
+        <Heading
+          level={3}
+        >
+          Enter Information:
+        </Heading>
+      );
+    },
+    Footer() {
+      return <Text>Footer Information</Text>;
+    },
+  },
+  SetupTotp: {
+    Header() {
+      return (
+        <Heading
+          level={3}
+        >
+          Enter Information:
+        </Heading>
+      );
+    },
+    Footer() {
+      return <Text>Footer Information</Text>;
+    },
+  },
+  ConfirmSignIn: {
+    Header() {
+      return (
+        <Heading
+          level={3}
+        >
+          Enter Information:
+        </Heading>
+      );
+    },
+    Footer() {
+      return <Text>Footer Information</Text>;
+    },
+  },
+  ForgotPassword: {
+    Header() {
+      return (
+        <Heading
+          level={3}
+        >
+          Enter Information:
+        </Heading>
+      );
+    },
+    Footer() {
+      return <Text>Footer Information</Text>;
+    },
+  },
+  ConfirmResetPassword: {
+    Header() {
+      return (
+        <Heading
+          level={3}
+        >
+          Enter Information:
+        </Heading>
+      );
+    }, 
+    Footer() {
+      return <Text>Footer Information</Text>;
+    },
+  },
+};
+
+const formFields = {
+  signIn: {
+    username: {
+      placeholder: 'Enter your email',
+    },
+  },
+  signUp: {
+    name: {
+      label: 'Name:',
+      placeholder: 'Enter your name',
+      order: 1,
+    }, 
+    preferred_username: {
+      label: 'Username:',
+      placeholder: 'Enter your username',
+      order: 2,
+    }
+  },
+  forceNewPassword: {
+    password: {
+      placeholder: 'Enter your Password:',
+    },
+  },
+  forgotPassword: {
+    username: {
+      placeholder: 'Enter your email:',
+    },
+  },
+  confirmResetPassword: {
+    confirmation_code: {
+      placeholder: 'Enter your Confirmation Code:',
+      label: 'New Label',
+      isRequired: false,
+    },
+    confirm_password: {
+      placeholder: 'Enter your Password Please:',
+    },
+  },
+  setupTotp: {
+    QR: {
+      totpIssuer: 'test issuer',
+      totpUsername: 'amplify_qr_test_user',
+    },
+    confirmation_code: {
+      label: 'New Label',
+      placeholder: 'Enter your Confirmation Code:',
+      isRequired: false,
+    },
+  },
+  confirmSignIn: {
+    confirmation_code: {
+      label: 'New Label',
+      placeholder: 'Enter your Confirmation Code:',
+      isRequired: false,
+    },
+  },
+};
+
+
 
 function App() {
 
   return (
-    <Authenticator>
+    <Authenticator formFields={formFields} components={components}>
       {({ signOut, user }) => (
         user && (
           <>
@@ -27,7 +250,7 @@ function App() {
             <h1>Lyric Boost</h1>
             <p className="read-the-docs"> 
               Blast through writer's block.
-            </p>
+            </p> 
             <div style={{ container: { margin: '50px' } }}>
               <Heading level={1}>Hello {user.username}</Heading>
               <Button onClick={signOut}>Sign out</Button>
