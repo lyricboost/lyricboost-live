@@ -1,39 +1,22 @@
 import React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
+import { AppBar, Toolbar, Typography, IconButton, Grid, Container } from '@mui/material';
+
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import { makeStyles } from '@mui/styles';
- 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-    },
-    title: {
-        flexGrow: 1,
-    },
-    appBar: {
-        height: '70px', // Slim height
-    },
-}));
+import LyricBoostLogo from '/LyricBoostLogo.svg'
+
 
 const Header = () => {
-    const classes = useStyles();
 
     return (
-        <div className={classes.root}>
-            <AppBar position="static" className={classes.appBar}>
-                <Toolbar>
-                    <Typography variant="h6" className={classes.title}>
-                        Lyric Boost
-                    </Typography>
-                    <IconButton color="inherit">
-                        <AccountCircle />
-                    </IconButton>
-                </Toolbar>
+        <div>
+            <AppBar position="static" style={{ backgroundColor: "#2c3e50" }}>
+                <Container maxWidth="xl">
+                    <Toolbar style={{ display: "flex", alignItems: "center", padding: "10px 0px" }}> 
+                            <img src={LyricBoostLogo} height="40px"/>
+                    </Toolbar>
+                </Container>
             </AppBar>
-        </div>
+        </div> 
     );
 };
 
