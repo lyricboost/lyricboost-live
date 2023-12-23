@@ -16,6 +16,6 @@ const Header = () => {
             </AppBar>
         </div> 
     );
-};
+}; 
 
 export default Header;
