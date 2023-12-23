@@ -1,0 +1,126 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-lyricboost-dev-185348-authRole",
+      "UnauthRoleArn": "arn:aws:iam::758304301615:role/amplify-lyricboost-dev-185348-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::758304301615:role/amplify-lyricboost-dev-185348-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-lyricboost-dev-185348-deployment",
+      "UnauthRoleName": "amplify-lyricboost-dev-185348-unauthRole",
+      "StackName": "amplify-lyricboost-dev-185348",
+      "StackId": "arn:aws:cloudformation:us-east-1:758304301615:stack/amplify-lyricboost-dev-185348/e6faa330-9d3f-11ee-9621-0ac09ef620b5",
+      "AmplifyAppId": "d2gn001kmjhot4",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-lyricboost-dev-185348-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+    }
+  },
+  "api": {
+    "lyricboost": {
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [],
+          "defaultAuthentication": {
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 7
+            },
+            "authenticationType": "API_KEY"
+          }
+        },
+        "GraphQLAPIIdOutput": "qtteap642zeapg7fw5z7zato2a",
+        "GraphQLAPIEndpointOutput": "https://ppjnkvag4bhulmykzmvoznj6ka.appsync-api.us-east-1.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-fvyn2hulabcwvmjofdixts22wu"
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync",
+      "lastPushTimeStamp": "2023-12-22T06:11:00.575Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-lyricboost-dev-185348-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apilyricboost"
+      },
+      "lastPushDirHash": "y6MiRj+KjvEO40ZTT0HkUglT2j0="
+    }
+  },
+  "auth": {
+    "lyricboostda706c03": {
+      "customAuth": false,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "lyricboostda706c03CustomMessage",
+          "triggerProvider": "Cognito"
+        }
+      ],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "EMAIL",
+          "NAME",
+          "PREFERRED_USERNAME"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "output": {
+        "UserPoolId": "us-east-1_3Mx9uZXcq",
+        "AppClientIDWeb": "6cn01o4g62pihlcrr62t06jv2k",
+        "AppClientID": "42qhai870lovm9m1idnljvl89f",
+        "IdentityPoolId": "us-east-1:44fd5e5f-7e52-4f76-83e1-1067708c8548",
+        "UserPoolArn": "arn:aws:cognito-idp:us-east-1:758304301615:userpool/us-east-1_3Mx9uZXcq",
+        "IdentityPoolName": "lyricboostda706c03_identitypool_da706c03__dev",
+        "UserPoolName": "lyricboostda706c03_userpool_da706c03"
+      },
+      "lastPushTimeStamp": "2023-12-22T06:11:00.575Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-lyricboost-dev-185348-deployment/amplify-cfn-templates/auth/lyricboostda706c03-cloudformation-template.json",
+        "logicalId": "authlyricboostda706c03"
+      },
+      "lastPushDirHash": "YwwM30ptCjI+HGh+NXW/YC/aoC4="
+    }
+  },
+  "function": {
+    "lyricboostda706c03CustomMessage": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "output": {
+        "LambdaExecutionRoleArn": "arn:aws:iam::758304301615:role/lyricboostda706c03CustomMessage-dev",
+        "Region": "us-east-1",
+        "Arn": "arn:aws:lambda:us-east-1:758304301615:function:lyricboostda706c03CustomMessage-dev",
+        "Name": "lyricboostda706c03CustomMessage-dev",
+        "LambdaExecutionRole": "lyricboostda706c03CustomMessage-dev"
+      },
+      "lastPushTimeStamp": "2023-12-22T06:11:00.575Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-lyricboost-dev-185348-deployment/amplify-cfn-templates/function/lyricboostda706c03CustomMessage-cloudformation-template.json",
+        "logicalId": "functionlyricboostda706c03CustomMessage"
+      },
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-lyricboost-dev-185348-deployment",
+        "s3Key": "amplify-builds/lyricboostda706c03CustomMessage-3950356d676656373636-build.zip"
+      },
+      "lastBuildTimeStamp": "2023-12-22T06:09:57.973Z",
+      "lastBuildType": "PROD",
+      "lastPackageTimeStamp": "2023-12-22T06:09:57.992Z",
+      "distZipFilename": "lyricboostda706c03CustomMessage-3950356d676656373636-build.zip",
+      "lastPushDirHash": "4+E5XpWwRM0vE/M3fL/SRNkCsgQ="
+    }
+  }
+}
