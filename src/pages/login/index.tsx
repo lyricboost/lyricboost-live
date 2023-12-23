@@ -33,7 +33,7 @@ import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 
 // ** Hooks
-import { useAuth } from 'src/hooks/useAuth'
+//import { useAuth } from 'src/hooks/useAuth'
 import useBgColor from 'src/@core/hooks/useBgColor'
 import { useSettings } from 'src/@core/hooks/useSettings'
 
@@ -115,17 +115,12 @@ const defaultValues = {
   email: 'admin@materio.com'
 }
 
-interface FormData {
-  email: string
-  password: string
-}
-
 const LoginPage = () => {
   const [rememberMe, setRememberMe] = useState<boolean>(true)
   const [showPassword, setShowPassword] = useState<boolean>(false)
 
   // ** Hooks
-  const auth = useAuth()
+  // const auth = useAuth()
   const theme = useTheme()
   const bgColors = useBgColor()
   const { settings } = useSettings()
@@ -136,24 +131,12 @@ const LoginPage = () => {
 
   const {
     control,
-    setError,
-    handleSubmit,
     formState: { errors }
   } = useForm({
     defaultValues,
     mode: 'onBlur',
     resolver: yupResolver(schema)
   })
-
-  const onSubmit = (data: FormData) => {
-    const { email, password } = data
-    auth.login({ email, password, rememberMe }, () => {
-      setError('email', {
-        type: 'manual',
-        message: 'Email or Password is invalid'
-      })
-    })
-  }
 
   const imageSource = skin === 'bordered' ? 'auth-v2-login-illustration-bordered' : 'auth-v2-login-illustration'
 
@@ -215,7 +198,7 @@ const LoginPage = () => {
                 Client: <strong>client@materio.com</strong> / Pass: <strong>client</strong>
               </Typography>
             </Alert>
-            <form noValidate autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
+            <form noValidate autoComplete='off'>
               <FormControl fullWidth sx={{ mb: 4 }}>
                 <Controller
                   name='email'
