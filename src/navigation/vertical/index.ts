@@ -9,8 +9,8 @@ const navigation = (): VerticalNavItemsType => {
       icon: 'mdi:view-dashboard'
     },
     {
-      title: 'Song Book',
-      path: '/song-book',
+      title: 'Songs',
+      path: '/songs',
       icon: 'mdi:book'
     }
   ]

@@ -28,6 +28,7 @@ type ThemeConfig = {
   appBarBlur: boolean
   direction: Direction
   templateName: string
+  description: string
   navCollapsed: boolean
   routingLoader: boolean
   disableRipple: boolean
@@ -50,6 +51,8 @@ type ThemeConfig = {
 const themeConfig: ThemeConfig = {
   // ** Layout Configs
   templateName: 'Lyric Boost' /* App Name */,
+  description:
+    'Elevate your songwriting with this AI-powered tool, tailored for independent singers, rappers, and songwriters. Experience intuitive lyric crafting and unleash your creative potential, transforming musical ideas into polished compositions effortlessly.',
   layout: 'vertical' /* vertical | horizontal */,
   mode: 'semi-dark' as Mode /* light | dark | semi-dark /*! Note: semi-dark value will only work for Vertical Layout */,
   direction: 'ltr' /* ltr | rtl */,
