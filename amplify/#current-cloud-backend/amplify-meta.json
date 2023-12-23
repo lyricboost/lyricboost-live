@@ -32,7 +32,7 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "AppSync",
-      "lastPushTimeStamp": "2023-12-22T06:11:00.575Z",
+      "lastPushTimeStamp": "2023-12-23T04:49:48.970Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-lyricboost-dev-185348-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apilyricboost"
@@ -87,7 +87,7 @@
         "IdentityPoolName": "lyricboostda706c03_identitypool_da706c03__dev",
         "UserPoolName": "lyricboostda706c03_userpool_da706c03"
       },
-      "lastPushTimeStamp": "2023-12-22T06:11:00.575Z",
+      "lastPushTimeStamp": "2023-12-23T04:49:48.970Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-lyricboost-dev-185348-deployment/amplify-cfn-templates/auth/lyricboostda706c03-cloudformation-template.json",
         "logicalId": "authlyricboostda706c03"
@@ -107,7 +107,7 @@
         "Name": "lyricboostda706c03CustomMessage-dev",
         "LambdaExecutionRole": "lyricboostda706c03CustomMessage-dev"
       },
-      "lastPushTimeStamp": "2023-12-22T06:11:00.575Z",
+      "lastPushTimeStamp": "2023-12-23T04:49:48.970Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-lyricboost-dev-185348-deployment/amplify-cfn-templates/function/lyricboostda706c03CustomMessage-cloudformation-template.json",
         "logicalId": "functionlyricboostda706c03CustomMessage"
@@ -116,9 +116,9 @@
         "deploymentBucketName": "amplify-lyricboost-dev-185348-deployment",
         "s3Key": "amplify-builds/lyricboostda706c03CustomMessage-3950356d676656373636-build.zip"
       },
-      "lastBuildTimeStamp": "2023-12-22T06:09:57.973Z",
+      "lastBuildTimeStamp": "2023-12-23T04:48:46.378Z",
       "lastBuildType": "PROD",
-      "lastPackageTimeStamp": "2023-12-22T06:09:57.992Z",
+      "lastPackageTimeStamp": "2023-12-23T04:48:46.402Z",
       "distZipFilename": "lyricboostda706c03CustomMessage-3950356d676656373636-build.zip",
       "lastPushDirHash": "4+E5XpWwRM0vE/M3fL/SRNkCsgQ="
     }
