@@ -6,12 +6,14 @@ const navigation = (): VerticalNavItemsType => {
     {
       title: 'Dashboard',
       path: '/dashboard',
-      icon: 'mdi:view-dashboard'
+      icon: 'mdi:view-dashboard',
+      auth: false
     },
     {
       title: 'Songs',
       path: '/songs',
-      icon: 'mdi:book'
+      icon: 'mdi:book',
+      auth: false
     }
   ]
 }
