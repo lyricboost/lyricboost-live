@@ -23,12 +23,12 @@ import Icon from 'src/@core/components/icon'
 import format from 'date-fns/format'
 
 // ** Store & Actions Imports
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 //import { fetchData, deleteInvoice } from 'src/store/apps/invoice'
 
 // ** Types Imports
-import { RootState, AppDispatch } from 'src/store'
+import { RootState } from 'src/store'
 import { ThemeColor } from 'src/@core/layouts/types'
 import { InvoiceType } from 'src/types/apps/invoiceTypes'
 
@@ -151,7 +151,7 @@ const Songs = () => {
   const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 10 })
 
   // ** Hooks
-  const dispatch = useDispatch<AppDispatch>()
+  //const dispatch = useDispatch<AppDispatch>()
   const store = useSelector((state: RootState) => state.invoice)
 
   // useEffect(() => {
@@ -179,7 +179,7 @@ const Songs = () => {
       renderCell: ({ row }: CellType) => (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Tooltip title='Delete Invoice'>
-            <IconButton size='small' onClick={() => dispatch(deleteInvoice(row.id))}>
+            <IconButton size='small'>
               <Icon icon='mdi:delete-outline' fontSize={20} />
             </IconButton>
           </Tooltip>
