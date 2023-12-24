@@ -1,6 +1,8 @@
 // ** React Imports
 import { ReactNode, useState } from 'react'
 
+//import { supabase } from './../../hooks/auth/supabase'
+
 // ** Next Import
 import Link from 'next/link'
 
@@ -86,6 +88,11 @@ const LinkStyled = styled(Link)(({ theme }) => ({
   textDecoration: 'none',
   color: theme.palette.primary.main
 }))
+
+// const handleRegister = async (email: string, password: string) => {
+//   const { error } = await supabase.auth.signUp({ email, password })
+//   if (error) throw error
+// }
 
 const Register = () => {
   // ** States
