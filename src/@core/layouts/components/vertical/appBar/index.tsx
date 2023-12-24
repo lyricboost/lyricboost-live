@@ -11,6 +11,7 @@ import { LayoutProps } from 'src/@core/layouts/types'
 import { hexToRGBA } from 'src/@core/utils/hex-to-rgba'
 
 interface Props {
+  user: any
   hidden: LayoutProps['hidden']
   toggleNavVisibility: () => void
   settings: LayoutProps['settings']

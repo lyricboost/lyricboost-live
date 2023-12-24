@@ -92,6 +92,7 @@ const VerticalLayout = (props: LayoutProps) => {
         >
           {/* AppBar Component */}
           <AppBar
+            user=""
             toggleNavVisibility={toggleNavVisibility}
             appBarContent={verticalLayoutProps.appBar?.content}
             appBarProps={verticalLayoutProps.appBar?.componentProps}
