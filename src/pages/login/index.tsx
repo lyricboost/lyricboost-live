@@ -1,6 +1,8 @@
 // ** React Imports
 import { useState, ReactNode, MouseEvent } from 'react'
 
+import { supabase } from './../../hooks/auth/supabase'
+
 // ** Next Imports
 import Link from 'next/link'
 
@@ -126,17 +128,40 @@ const LoginPage = () => {
   const { settings } = useSettings()
   const hidden = useMediaQuery(theme.breakpoints.down('md'))
 
+  // const handleLogin = async (email: string, password: string) => {
+  //   const { error } = await supabase.auth.signIn({ email, password })
+  //   if (error) throw error
+  // }
+
   // ** Vars
   const { skin } = settings
 
+  // ** Updated handleLogin function to use react-hook-form
   const {
     control,
-    formState: { errors }
+    formState: { errors },
+    handleSubmit
   } = useForm({
     defaultValues,
     mode: 'onBlur',
     resolver: yupResolver(schema)
   })
+
+  const onSubmit = async (data: { email: string; password: string }) => {
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email: data.email,
+        password: data.password
+      })
+      if (error) throw error
+
+      // Redirect to dashboard or show success message
+    } catch (error) {
+      console.error('Login error', error)
+
+      // Handle error (e.g., show error message)
+    }
+  }
 
   const imageSource = skin === 'bordered' ? 'auth-v2-login-illustration-bordered' : 'auth-v2-login-illustration'
 
@@ -198,7 +223,7 @@ const LoginPage = () => {
                 Client: <strong>client@materio.com</strong> / Pass: <strong>client</strong>
               </Typography>
             </Alert>
-            <form noValidate autoComplete='off'>
+            <form noValidate autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
               <FormControl fullWidth sx={{ mb: 4 }}>
                 <Controller
                   name='email'
