@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { ReactNode, FC, useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { supabase } from './../hooks/auth/supabase'
 
 // Assuming you have a User type defined based on your user structure
 type UserType = {}
 
-const AuthProvider: React.FC = ({ children }) => {
+type AuthProviderProps = {
+  children: ReactNode
+}
+
+const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<UserType | null>(null)
   const router = useRouter()
 
