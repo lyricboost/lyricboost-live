@@ -1,66 +1,46 @@
-// ** React Imports
-import { useState, SyntheticEvent, Fragment } from 'react'
-
-// ** Next Import
-import { useRouter } from 'next/router'
-
-// ** MUI Imports
-import Box from '@mui/material/Box'
-import Menu from '@mui/material/Menu'
-import Badge from '@mui/material/Badge'
-import Avatar from '@mui/material/Avatar'
-import Divider from '@mui/material/Divider'
-import MenuItem from '@mui/material/MenuItem'
-import { styled } from '@mui/material/styles'
-import Typography from '@mui/material/Typography'
-
-// ** Icon Imports
-import Icon from 'src/@core/components/icon'
-
-// ** Context
-//import { useAuth } from 'src/hooks/useAuth'
-
-// ** Type Imports
-import { Settings } from 'src/@core/context/settingsContext'
+import { useState, SyntheticEvent, Fragment } from 'react';
+import { useRouter } from 'next/router';
+import Box from '@mui/material/Box';
+import Menu from '@mui/material/Menu';
+import Badge from '@mui/material/Badge';
+import Avatar from '@mui/material/Avatar';
+import Divider from '@mui/material/Divider';
+import MenuItem from '@mui/material/MenuItem';
+import { styled } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
+import Icon from 'src/@core/components/icon';
+import { supabase } from '../../../../hooks/auth/supabase'; // Import Supabase instance
+import { Settings } from 'src/@core/context/settingsContext';
 
 interface Props {
-  settings: Settings
+  settings: Settings;
+  user: any;
 }
 
-// ** Styled Components
 const BadgeContentSpan = styled('span')(({ theme }) => ({
   width: 8,
   height: 8,
   borderRadius: '50%',
   backgroundColor: theme.palette.success.main,
-  boxShadow: `0 0 0 2px ${theme.palette.background.paper}`
-}))
+  boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+}));
 
 const UserDropdown = (props: Props) => {
-  // ** Props
-  const { settings } = props
-
-  // ** States
-  const [anchorEl, setAnchorEl] = useState<Element | null>(null)
-
-  // ** Hooks
-  const router = useRouter()
-
-  //  const { logout } = useAuth()
-
-  // ** Vars
-  const { direction } = settings
+  const { settings, user } = props;
+  const [anchorEl, setAnchorEl] = useState<Element | null>(null);
+  const router = useRouter();
+  const { direction } = settings;
 
   const handleDropdownOpen = (event: SyntheticEvent) => {
-    setAnchorEl(event.currentTarget)
-  }
+    setAnchorEl(event.currentTarget);
+  };
 
   const handleDropdownClose = (url?: string) => {
     if (url) {
-      router.push(url)
+      router.push(url);
     }
-    setAnchorEl(null)
-  }
+    setAnchorEl(null);
+  };
 
   const styles = {
     py: 2,
@@ -73,14 +53,24 @@ const UserDropdown = (props: Props) => {
     '& svg': {
       mr: 2,
       fontSize: '1.375rem',
-      color: 'text.primary'
-    }
-  }
+      color: 'text.primary',
+    },
+  };
 
-  const handleLogout = () => {
-    //  logout()
-    handleDropdownClose()
-  }
+  const handleLogout = async () => {
+    try {
+      const { error } = await supabase.auth.signOut(); // Sign the user out using Supabase
+
+      if (error) {
+        console.error('Error logging out:', error.message);
+      } else {
+        // Redirect the user to the login page or any other desired location
+        handleDropdownClose('/login');
+      }
+    } catch (error) {
+      console.error('Error logging out:');
+    }
+  };
 
   return (
     <Fragment>
@@ -91,7 +81,7 @@ const UserDropdown = (props: Props) => {
         badgeContent={<BadgeContentSpan />}
         anchorOrigin={{
           vertical: 'bottom',
-          horizontal: 'right'
+          horizontal: 'right',
         }}
       >
         <Avatar
@@ -116,13 +106,13 @@ const UserDropdown = (props: Props) => {
               badgeContent={<BadgeContentSpan />}
               anchorOrigin={{
                 vertical: 'bottom',
-                horizontal: 'right'
+                horizontal: 'right',
               }}
             >
               <Avatar alt='John Doe' src='/images/avatars/1.png' sx={{ width: '2.5rem', height: '2.5rem' }} />
             </Badge>
             <Box sx={{ display: 'flex', ml: 3, alignItems: 'flex-start', flexDirection: 'column' }}>
-              <Typography sx={{ fontWeight: 600 }}>John Doe</Typography>
+              <Typography sx={{ fontWeight: 600 }}>{user?.email || 'John Doe'}</Typography>
               <Typography variant='body2' sx={{ fontSize: '0.8rem', color: 'text.disabled' }}>
                 Admin
               </Typography>
@@ -152,7 +142,7 @@ const UserDropdown = (props: Props) => {
         </MenuItem>
       </Menu>
     </Fragment>
-  )
-}
+  );
+};
 
-export default UserDropdown
+export default UserDropdown;
