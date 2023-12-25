@@ -27,6 +27,7 @@
       "apexcharts/*": [
         "./node_modules/apexcharts-clevision/*"
       ],
+      "supabase": ["./src/hooks/auth/supabase"]
     }
   },
   "include": [

@@ -104,7 +104,7 @@ const LoginV1 = () => {
         router.push('/dashboard'); // Redirect to the dashboard route on success
       }
     } catch (error) {
-      setError('Error signing in: ' + error.message);
+      setError('Error signing in: ');
     }
   }
 
