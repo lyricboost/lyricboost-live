@@ -26,9 +26,10 @@ interface Props {
   children: ReactNode
   contentHeightFixed?: boolean
   user: any
+  userData: any
 }
 
-const UserLayout = ({ user, children, contentHeightFixed }: Props) => {
+const UserLayout = ({ user, userData, children, contentHeightFixed }: Props) => {
   // ** Hooks
   const { settings, saveSettings } = useSettings()
 
@@ -66,6 +67,7 @@ const UserLayout = ({ user, children, contentHeightFixed }: Props) => {
           content: props => (
             <VerticalAppBarContent
               user={user}
+              userData={userData}
               hidden={hidden}
               settings={settings}
               saveSettings={saveSettings}

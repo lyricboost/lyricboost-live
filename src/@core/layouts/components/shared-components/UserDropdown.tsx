@@ -15,6 +15,7 @@ import { Settings } from 'src/@core/context/settingsContext';
 interface Props {
   settings: Settings;
   user: any;
+  userData: any
 }
 
 const BadgeContentSpan = styled('span')(({ theme }) => ({
@@ -26,7 +27,7 @@ const BadgeContentSpan = styled('span')(({ theme }) => ({
 }));
 
 const UserDropdown = (props: Props) => {
-  const { settings, user } = props;
+  const { settings, userData } = props;
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
   const router = useRouter();
   const { direction } = settings;
@@ -85,10 +86,10 @@ const UserDropdown = (props: Props) => {
         }}
       >
         <Avatar
-          alt='John Doe'
+          alt={userData?.first_name}
           onClick={handleDropdownOpen}
           sx={{ width: 40, height: 40 }}
-          src='/images/avatars/1.png'
+          src={userData?.profile_pic ? userData.profile_pic : '/images/avatars/1.png'}
         />
       </Badge>
       <Menu
@@ -109,12 +110,12 @@ const UserDropdown = (props: Props) => {
                 horizontal: 'right',
               }}
             >
-              <Avatar alt='John Doe' src='/images/avatars/1.png' sx={{ width: '2.5rem', height: '2.5rem' }} />
+              <Avatar alt={userData?.first_name} src={userData?.profile_pic ? userData.profile_pic : '/images/avatars/1.png'} sx={{ width: '2.5rem', height: '2.5rem' }} />
             </Badge>
             <Box sx={{ display: 'flex', ml: 3, alignItems: 'flex-start', flexDirection: 'column' }}>
-              <Typography sx={{ fontWeight: 600 }}>{user?.email || 'John Doe'}</Typography>
+              <Typography sx={{ fontWeight: 600 }}>{userData?.first_name}</Typography>
               <Typography variant='body2' sx={{ fontSize: '0.8rem', color: 'text.disabled' }}>
-                Admin
+              {userData?.role}
               </Typography>
             </Box>
           </Box>

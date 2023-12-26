@@ -1,5 +1,6 @@
 // ** React Imports
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 // ** Next Imports
 import Head from 'next/head';
@@ -11,6 +12,7 @@ import { store } from 'src/store/index'; // Path to your Redux store
 import NProgress from 'nprogress';
 
 import { supabase } from '../hooks/auth/supabase';
+
 
 // ** Emotion Imports
 import { CacheProvider } from '@emotion/react';
@@ -74,48 +76,64 @@ if (themeConfig.routingLoader) {
 function App(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
+  const [user, setUser] = useState(null); // State to store the user information
+  const [userData, setUserData] = useState(null); // State to store the user information
+
+  const router = useRouter();
+
+
   // Variables
   const contentHeightFixed = Component.contentHeightFixed ?? false;
 
   const getLayout =
-    Component.getLayout ?? (page => <UserLayout user={user} contentHeightFixed={contentHeightFixed}>{page}</UserLayout>);
+    Component.getLayout ?? (page => <UserLayout user={user} userData={userData} contentHeightFixed={contentHeightFixed}>{page}</UserLayout>);
 
   const setConfig = Component.setConfig ?? undefined;
 
-  const [user, setUser] = useState(null); // State to store the user information
 
-  // Use the `useEffect` hook to fetch the currently authenticated user when the app loads
   useEffect(() => {
-    const fetchUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      setUser(user);
-      console.log(user);
-    };
-
     const fetchUserData = async () => {
       try {
-        const { data: { user } } = await supabase.auth.getUser();
-        if (user) {
-          const { data, error } = await supabase
-            .from('Users')
-            .select('*')
-            .eq('user_id', user.id);
+        const { data, error } = await supabase.auth.getSession(); // Get the user session
 
-          if (error) {
-            console.error('Error fetching user data:', error.message);
-            console.log("ERROR");
+        if (error) {
+          console.error('Error fetching user session:', error.message);
+          router.push('/login'); // Redirect to the login page if there is no session
+
+          return;
+        }
+
+        const sessionUser = data;
+
+        console.log(sessionUser.session.user.email)
+
+        if (sessionUser) {
+          const email = sessionUser.session.user.email; // Get the user's email from the session
+
+          const { data: userData, error: userError } = await supabase
+            .from('user_data')
+            .select('*')
+            .eq('email', email)
+            .single(); // Use .single() to retrieve a single record
+
+          if (userError) {
+
+            console.error('Error fetching user data:', userError.message);
           } else {
-            console.log('User data:', data);
+            console.log('User data:', userData);
+            setUser(sessionUser); // Set the user object from the session
+            setUserData(userData); // Set the user data object
           }
         }
+
+
       } catch (error) {
-        console.error('Error fetching user data:');
+        console.error('Error fetching user data:', error);
       }
     };
 
-    fetchUser();
     fetchUserData();
-  }, []);
+  }, [router]);
 
   return (
     <Provider store={store}>
@@ -128,22 +146,22 @@ function App(props) {
         </Head>
 
         <AuthProvider>
-          <SettingsProvider {...(setConfig ? { pageSettings: setConfig() } : {})}>
-            <SettingsConsumer>
-              {({ settings }) => {
-                return (
-                  <ThemeComponent settings={settings}>
-                    {/* Pass the `user` state to the component tree */}
-                    {getLayout(<Component {...pageProps} user={user} />)}
-                    <ReactHotToast>
-                      <Toaster position={settings.toastPosition} toastOptions={{ className: 'react-hot-toast' }} />
-                    </ReactHotToast>
-                  </ThemeComponent>
-                );
-              }}
-            </SettingsConsumer>
-          </SettingsProvider>
-        </AuthProvider>
+        <SettingsProvider {...(setConfig ? { pageSettings: setConfig() } : {})}>
+          <SettingsConsumer>
+            {({ settings }) => {
+              return (
+                <ThemeComponent settings={settings}>
+                  {/* Pass the `user` and `userData` states to the component tree */}
+                  {getLayout(<Component {...pageProps} user={user} userData={userData} />)}
+                  <ReactHotToast>
+                    <Toaster position={settings.toastPosition} toastOptions={{ className: 'react-hot-toast' }} />
+                  </ReactHotToast>
+                </ThemeComponent>
+              );
+            }}
+          </SettingsConsumer>
+        </SettingsProvider>
+      </AuthProvider>
       </CacheProvider>
     </Provider>
   );
