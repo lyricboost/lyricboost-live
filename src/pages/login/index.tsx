@@ -1,5 +1,5 @@
 // ** React Imports
-import { ChangeEvent, ReactNode, useState } from 'react'
+import { ChangeEvent, ReactNode, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'; // Import the useRouter hook
 import { supabase } from './../../hooks/auth/supabase'
 
@@ -85,6 +85,20 @@ const LoginV1 = () => {
 
   const router = useRouter(); // Initialize the router
 
+  useEffect(() => {
+
+      async () => {
+      // Check if the user is already authenticated
+      const { data } = await supabase.auth.getSession()
+
+      if (data) {
+        // User is authenticated, redirect to the dashboard
+        router.push('/dashboard');
+      }
+
+    }
+  });
+
   const handleLogin = async () => {
     try {
       // Validate email and password
@@ -101,7 +115,8 @@ const LoginV1 = () => {
         setError('Error signing in: ' + error.message);
       } else {
         console.log('Signed in successfully:', data);
-        router.push('/dashboard'); // Redirect to the dashboard route on success
+
+       router.push('/dashboard'); // Redirect to the dashboard route on success
       }
     } catch (error) {
       setError('Error signing in: ');

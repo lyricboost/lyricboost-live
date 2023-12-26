@@ -20,17 +20,18 @@ interface Props {
   toggleNavVisibility: () => void
   saveSettings: (values: Settings) => void
   user: any
+  userData: any
 }
 
 const AppBarContent = (props: Props) => {
   // ** Props
-  const { user, settings } = props
+  const { user, userData, settings } = props
 
   return (
     <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
       <Box className='actions-left' sx={{ mr: 2, display: 'flex', alignItems: 'center' }}></Box>
       <Box className='actions-right' sx={{ display: 'flex', alignItems: 'center' }}>
-        <UserDropdown user={user} settings={settings} />
+        <UserDropdown user={user} userData={userData} settings={settings} />
       </Box>
     </Box>
   )
