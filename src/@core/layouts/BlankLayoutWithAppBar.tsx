@@ -2,6 +2,7 @@
 import { styled } from '@mui/material/styles'
 import Box, { BoxProps } from '@mui/material/Box'
 
+
 // ** Types
 import { BlankLayoutWithAppBarProps } from './types'
 
