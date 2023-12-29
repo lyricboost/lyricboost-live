@@ -16,7 +16,7 @@ const Home = () => {
         <Grid container>
           <Grid item xs={12}>
               <Grid container justifyContent="center">
-                  <Grid item xs={8}>
+                  <Grid item xs={10} md={8}>
                     <Box component="div" align="center">
                       <Box sx={{ mb: 10 }}>
                         <Typography sx={{ mb: 5 }} variant='h1' fontWeight={600} color="#ffffff" className="hero-heading fade-in">Boost your songwriting</Typography>

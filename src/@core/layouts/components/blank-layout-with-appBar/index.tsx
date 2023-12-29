@@ -94,7 +94,7 @@ const BlankLayoutAppBar = () => {
           </Grid>
 
           <Grid item xs={6} sx={{ alignItems: "center" }}>
-            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none', justifyContent: "end", alignItems: "center" } }}>
+            <Box sx={{ mt: 3, flexGrow: 1, display: { xs: 'flex', md: 'none', justifyContent: "end", alignItems: "center" } }}>
               <IconButton
                 size="large"
                 aria-label="account of current user"
