@@ -3,6 +3,10 @@ body {
   min-height: 100%;
 }
 
+body {
+  background-color: #0C1824 !important
+}
+
 #__next {
   height: 100%;
 }

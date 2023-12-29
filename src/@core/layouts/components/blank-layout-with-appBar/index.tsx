@@ -4,11 +4,14 @@ import Link from 'next/link'
 // ** MUI Imports
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
+import Typography, { TypographyProps } from '@mui/material/Typography'
 import { styled, useTheme } from '@mui/material/styles'
 
 // ** Configs
 import themeConfig from 'src/configs/themeConfig'
+
+import Image from 'next/image'
+
 
 // ** Hook
 import { useSettings } from 'src/@core/hooks/useSettings'
@@ -18,6 +21,14 @@ const LinkStyled = styled(Link)(({ theme }) => ({
   alignItems: 'center',
   textDecoration: 'none',
   marginRight: theme.spacing(8)
+}))
+
+const HeaderTitle = styled(Typography)<TypographyProps>(({ theme }) => ({
+  fontWeight: 600,
+  lineHeight: 'normal',
+  textTransform: 'uppercase',
+  color: theme.palette.text.primary,
+  transition: 'opacity .25s ease-in-out, margin .25s ease-in-out'
 }))
 
 const BlankLayoutAppBar = () => {
@@ -30,9 +41,9 @@ const BlankLayoutAppBar = () => {
     <AppBar
       color='default'
       position='sticky'
-      elevation={skin === 'bordered' ? 0 : 3}
+      elevation={0}
       sx={{
-        backgroundColor: 'background.paper',
+        backgroundColor: 'transparent',
         ...(skin === 'bordered' && { borderBottom: `1px solid ${theme.palette.divider}` })
       }}
     >
@@ -44,17 +55,12 @@ const BlankLayoutAppBar = () => {
         }}
       >
         <LinkStyled href='/'>
-          <Typography
+          <HeaderTitle
             variant='h6'
-            sx={{
-              ml: 3,
-              fontWeight: 600,
-              lineHeight: 'normal',
-              textTransform: 'uppercase'
-            }}
+            sx={{ ml: 0, my: 6 }}
           >
-            {themeConfig.templateName}
-          </Typography>
+            <Image src='/images/lyric-boost-logo.svg' alt={themeConfig.templateName} width='162' height='50' />
+          </HeaderTitle>
         </LinkStyled>
       </Toolbar>
     </AppBar>

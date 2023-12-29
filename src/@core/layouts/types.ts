@@ -110,5 +110,5 @@ export type LayoutProps = {
   scrollToTop?: (props?: any) => ReactNode
   saveSettings: (values: Settings) => void
   verticalLayoutProps: VerticalLayoutProps
-  horizontalLayoutProps?: HorizontalLayoutProps
+  horizontalLayoutProps: HorizontalLayoutProps
 }
