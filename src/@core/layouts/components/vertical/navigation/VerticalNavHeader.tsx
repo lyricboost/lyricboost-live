@@ -103,7 +103,6 @@ const VerticalNavHeader = (props: Props) => {
             sx={{ ...menuCollapsedStyles, ...(navCollapsed && !navHover ? {} : { ml: 0, my: 6 }) }}
           >
             <Image src='/images/lyric-boost-logo.svg' alt={themeConfig.templateName} width='162' height='50' />
-            {/* {themeConfig.templateName} */}
           </HeaderTitle>
         </LinkStyled>
       )}
