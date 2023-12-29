@@ -1,8 +1,8 @@
 // ** React Imports
-import { ReactNode } from 'react'
+//import { ReactNode } from 'react'
 
 // ** MUI Imports
-import { Theme } from '@mui/material/styles'
+//import { Theme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
 // ** Layout Imports
@@ -24,12 +24,12 @@ import HorizontalAppBarContent from './components/horizontal/AppBarContent'
 // ** Hook Import
 import { useSettings } from 'src/@core/hooks/useSettings'
 
-interface Props {
-  children: ReactNode
-  contentHeightFixed?: boolean
-}
+// interface Props {
+//   children: ReactNode
+//   contentHeightFixed?: boolean
+// }
 
-const UserLayout = ({ children, contentHeightFixed }: Props) => {
+const UserLayout = ({ children, contentHeightFixed }) => {
   // ** Hooks
   const { settings, saveSettings } = useSettings()
 
@@ -45,7 +45,7 @@ const UserLayout = ({ children, contentHeightFixed }: Props) => {
    *  to know more about what values can be passed to this hook.
    *  ! Do not change this value unless you know what you are doing. It can break the template.
    */
-  const hidden = useMediaQuery((theme: Theme) => theme.breakpoints.down('lg'))
+  const hidden = useMediaQuery((theme) => theme.breakpoints.down('lg'))
 
   if (hidden && settings.layout === 'horizontal') {
     settings.layout = 'vertical'

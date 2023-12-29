@@ -17,11 +17,11 @@ const Home = () => {
         <Grid container spacing={6} alignItems="center">
           <Grid item xs={12}>
             <Box style={{ marginBottom: "50px" }}>
-              <Typography variant='h1' style={{ fontWeight: 600, textAlign: 'center', color: '#ffffff', marginBottom: "20px" }}>Blast through writer's block</Typography>
-              <Typography variant='h4' style={{ fontWeight: 300, textAlign: 'center', color: '#ffffff' }}>Songwriting inspiration with AI superpowers</Typography>
+              <Typography variant='h1' style={{ fontWeight: 600, textAlign: 'center', color: '#ffffff', marginBottom: "30px" }}>Boost your songwriting</Typography>
+              <Typography variant='h4' style={{ fontWeight: 300, textAlign: 'center', color: '#ffffff' }}>Blast through writer's block and finish songs faster</Typography>
             </Box>
             <Box display="flex" style={{ justifyContent: 'center' }}>
-                <Button variant='contained' href='/login'>Get started</Button>
+                <Button size='large' variant='contained' href='/login'>Get started</Button>
             </Box>
           </Grid>
         </Grid>

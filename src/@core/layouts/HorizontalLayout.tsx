@@ -149,7 +149,7 @@ const HorizontalLayout = (props: LayoutProps) => {
                   mx: 'auto',
                   ...(contentWidth === 'boxed' && { '@media (min-width:1440px)': { maxWidth: 1440 } }),
                   minHeight: theme =>
-                    `${(theme.mixins.toolbar.minHeight as number) - (skin === 'bordered' ? 1 : 0)}px !important`
+                    `${(theme.mixins.toolbar.minHeight as number) - 0}px !important`
                 }}
               >
                 {(userNavMenuContent && userNavMenuContent(props)) || (
