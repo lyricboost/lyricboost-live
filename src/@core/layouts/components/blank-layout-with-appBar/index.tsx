@@ -1,17 +1,26 @@
 // ** Next Import
 import Link from 'next/link'
 
+import { useState } from 'react'
+
+
 // ** MUI Imports
 import AppBar from '@mui/material/AppBar'
-import { Grid } from '@mui/material'
+import { Grid, Box, Button } from '@mui/material'
 import Toolbar from '@mui/material/Toolbar'
 import Typography, { TypographyProps } from '@mui/material/Typography'
 import { styled, useTheme } from '@mui/material/styles'
+
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import Icon from 'src/@core/components/icon'
+import MenuItem from '@mui/material/MenuItem';
 
 // ** Configs
 import themeConfig from 'src/configs/themeConfig'
 
 import Image from 'next/image'
+
 
 
 // ** Hook
@@ -32,11 +41,27 @@ const HeaderTitle = styled(Typography)<TypographyProps>(({ theme }) => ({
   transition: 'opacity .25s ease-in-out, margin .25s ease-in-out'
 }))
 
+const pages = [
+  { name: 'Sign In', href: '/login', primary: false },
+  { name: 'Sign Up', href: '/register', primary: true }
+];
+
+
 const BlankLayoutAppBar = () => {
   // ** Hooks & Vars
   const theme = useTheme()
   const { settings } = useSettings()
   const { skin } = settings
+
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElNav(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
 
   return (
     <AppBar
@@ -68,8 +93,57 @@ const BlankLayoutAppBar = () => {
             </LinkStyled>
           </Grid>
 
-          <Grid item xs={6}>
-        
+          <Grid item xs={6} sx={{ alignItems: "center" }}>
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none', justifyContent: "end", alignItems: "center" } }}>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                sx={{ color: "#ffffff" }}
+              >
+                <Icon icon='mdi:menu' />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  display: { xs: 'block', md: 'none' },
+                }}
+              >
+                {pages.map((page, id) => (
+                  <MenuItem key={id} onClick={() => window.location.href = page.href}>
+                    <Typography textAlign="center">{page.name}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+            <Box sx={{ pt: 3, flexGrow: 1, display: { xs: 'none', md: 'flex', justifyContent: "end", alignItems: "center" } }} >
+            {pages.map((page, id) => (
+              <Button
+                variant={page.primary ? "contained" : "text"}
+                href={page.href}
+                key={id}
+                onClick={handleCloseNavMenu}
+                sx={{ mr: 5, my: 2, color: (page.primary ? 'black' : 'white'), fontWeight: 600, display: 'block' }}
+              >
+                {page.name}
+              </Button>
+            ))}
+          </Box>
+
           </Grid>
       </Grid>
 
