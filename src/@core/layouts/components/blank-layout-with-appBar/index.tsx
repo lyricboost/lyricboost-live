@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 // ** MUI Imports
 import AppBar from '@mui/material/AppBar'
+import { Grid } from '@mui/material'
 import Toolbar from '@mui/material/Toolbar'
 import Typography, { TypographyProps } from '@mui/material/Typography'
 import { styled, useTheme } from '@mui/material/styles'
@@ -54,15 +55,26 @@ const BlankLayoutAppBar = () => {
           minHeight: `${(theme.mixins.toolbar.minHeight as number) - (skin === 'bordered' ? 1 : 0)}px !important`
         }}
       >
-        <LinkStyled href='/'>
-          <HeaderTitle
-            variant='h6'
-            sx={{ ml: 0, my: 6 }}
-          >
-            <Image src='/images/lyric-boost-logo.svg' alt={themeConfig.templateName} width='162' height='50' />
-          </HeaderTitle>
-        </LinkStyled>
+
+      <Grid container>
+          <Grid item xs={6}>
+            <LinkStyled href='/'>
+              <HeaderTitle
+                variant='h6'
+                sx={{ ml: 0, my: 6 }}
+              >
+                <Image src='/images/lyric-boost-logo.svg' alt={themeConfig.templateName} width='162' height='50' />
+              </HeaderTitle>
+            </LinkStyled>
+          </Grid>
+
+          <Grid item xs={6}>
+        
+          </Grid>
+      </Grid>
+
       </Toolbar>
+
     </AppBar>
   )
 }

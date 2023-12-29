@@ -26,3 +26,21 @@ code:not([class*='language-']):after {
 code[class*='language-'] {
   padding: 0;
 }
+
+
+.fade-in {
+  opacity: 0; /* Start with text invisible */
+  transform: translateY(10px); /* Start with a slight upward translation */
+  animation: fadeInAnimation .5s ease-in-out forwards; /* Use the fadeInAnimation animation */
+}
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0; /* Start with 0 opacity */
+    transform: translateY(10px); /* Start with a slight upward translation */
+  }
+  to {
+    opacity: 1; /* End with full opacity */
+    transform: translateY(0); /* End with no vertical translation (back in place) */
+  }
+}
