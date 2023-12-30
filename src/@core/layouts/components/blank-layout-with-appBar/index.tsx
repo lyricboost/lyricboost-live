@@ -83,7 +83,7 @@ const BlankLayoutAppBar = () => {
 
       <Grid container>
           <Grid item xs={6}>
-            <LinkStyled href='/'>
+            <LinkStyled href='/' style={{ display: "inline-flex" }}>
               <HeaderTitle
                 variant='h6'
                 sx={{ ml: 0, my: 6 }}

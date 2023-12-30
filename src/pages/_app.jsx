@@ -135,6 +135,17 @@ function App(props) {
     fetchUserData();
   }, [router]);
 
+
+  const StarsBackground = () => {
+    return (
+      <div className="stars-group">
+              <div id="stars"></div>
+              <div id="stars2"></div>
+              <div id="stars3"></div>
+          </div>
+    )
+    }
+
   return (
     <Provider store={store}>
       <CacheProvider value={emotionCache}>
@@ -151,6 +162,7 @@ function App(props) {
             {({ settings }) => {
               return (
                 <ThemeComponent settings={settings}>
+                  <StarsBackground/>
                   {/* Pass the `user` and `userData` states to the component tree */}
                   {getLayout(<Component {...pageProps} user={user} userData={userData} />)}
                   <ReactHotToast>
